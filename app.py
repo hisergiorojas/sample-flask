@@ -1,4 +1,4 @@
-from flask import Flask, flash, request, redirect, render_template
+from flask import Flask, flash, request, redirect, render_template, send_file
 from werkzeug.utils import secure_filename
 import opentimelineio as otio
 
@@ -15,5 +15,12 @@ def upload_file():
         
         f = request.files['file']
         f.save(secure_filename(f.filename))
-        return 'file uploaded successfully'
+
+        puts(f.filename)
+        return 'h'
+#        timeline = otio.adapters.read_from_file()
+ #       otio.adapters.write_to_file(timeline, )
+
+
+  #      return send_file(path, as_attachment=True)
         
