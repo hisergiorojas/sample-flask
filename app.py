@@ -16,7 +16,7 @@ def upload_file():
         f = request.files['file']
         f.save(secure_filename(f.filename))
 
-        puts(f.filename)
+        print(f.filename)
         return 'h'
 #        timeline = otio.adapters.read_from_file()
  #       otio.adapters.write_to_file(timeline, )
