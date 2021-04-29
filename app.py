@@ -1,6 +1,7 @@
 from flask import Flask, flash, request, redirect, render_template, send_file
 from werkzeug.utils import secure_filename
 import os
+import requests
 import opentimelineio as otio
 
 app = Flask(__name__)
@@ -8,7 +9,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def upload_form():
-    response = request.get('.https://api.pandascore.co/matches/upcoming?token=1nW7K4Ys0yeOe2Uqq4yTIUjr_szzLxuR1-dLhPDIgVxkfbCkHrQ')
+    response = requests.get('.https://api.pandascore.co/matches/upcoming?token=1nW7K4Ys0yeOe2Uqq4yTIUjr_szzLxuR1-dLhPDIgVxkfbCkHrQ')
     print(response.json())
     return render_template("index.html")
 
