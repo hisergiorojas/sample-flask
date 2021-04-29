@@ -8,6 +8,8 @@ app = Flask(__name__)
 
 @app.route("/")
 def upload_form():
+    response = request.get('.https://api.pandascore.co/matches/upcoming?token=1nW7K4Ys0yeOe2Uqq4yTIUjr_szzLxuR1-dLhPDIgVxkfbCkHrQ')
+    print(response.json())
     return render_template("index.html")
 
 @app.route('/', methods = ['POST'])
