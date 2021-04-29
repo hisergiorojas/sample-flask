@@ -70,7 +70,13 @@
   </div>
    
     <div>
-      {{ embeds }}
+      {% for game in embed %}
+      <p>{{game}}</p>
+      <p>{{game.name}}</p>
+      <p>{{game.videogame.name}}</p>
+      <img src="{{game.league.image_url}}" />
+   
+      {% endfor %}
       <h1>Convert your files to OpenTimelineIO</h1>
    
 

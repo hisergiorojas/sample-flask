@@ -11,7 +11,7 @@ app = Flask(__name__)
 def upload_form():
     response = requests.get('https://api.pandascore.co/matches/upcoming?token=1nW7K4Ys0yeOe2Uqq4yTIUjr_szzLxuR1-dLhPDIgVxkfbCkHrQ')
     print(response.json())
-    return render_template("index.html", embed=response)
+    return render_template("index.html", embed=response.json())
 
 @app.route('/', methods = ['POST'])
 def upload_file():
