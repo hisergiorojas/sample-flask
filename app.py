@@ -53,7 +53,7 @@ def upload_file():
             flash('File successfully uploaded')
             return send_file(download_filename, as_attachment=True)
         else:
-            flash('Allowed file types are txt, pdf, png, jpg, jpeg, gif')
+            flash('Allowed file types are edl')
             return redirect(request.url)
 
        # f = request.files['file']
