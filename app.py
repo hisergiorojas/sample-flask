@@ -47,7 +47,8 @@ def upload_file():
             filename = secure_filename(file.filename)
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             timeline = otio.adapters.read_from_file(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-            download_filename = filename + '.otio'
+            
+            download_filename = os.path.splitext(file.filename)[0] + '.otio'
             otio.adapters.write_to_file(timeline, download_filename)
             print('timeline', timeline)
             flash('File successfully uploaded')
