@@ -28,26 +28,42 @@ ALLOWED_EXTENSIONS
 
 
 @app.route("/")
-def hello():
-    return 'Hello World!'
-
-def upload_form():
- 
-    return render_template("index.html")
+def upload_form(): 
+    return render_template("upload.html")
 
 @app.route('/', methods = ['POST'])
 def upload_file():
-    if request.method == 'POST':        
-        f = request.files['file']
-        f.save(secure_filename(f.filename))
+    if request.method == 'POST':       
+        # Check if the post request has the file part
+        if 'file' not in request.files:
+            flash('No file part')
+            return redirect(request.url)
 
-        filename = os.path.splitext(f.filename)[0]
-        timeline = otio.adapters.read_from_file(f.filename)
-        download_filename = filename + '.otio'
+        file = request.files['file']
+
+        if file.filename == '':
+            flash('No file selected for uplloading')
+            return redirect(request.url)
+
+        if file and allowed_file(file.filename):
+            filename = secure_filename(file.filename)
+            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            flash('File successfully uploaded')
+            return redirect('/')
+        else:
+            flash('Allowed file types are txt, pdf, png, jpg, jpeg, gif')
+            return redirect(request.url)
+
+       # f = request.files['file']
+       # f.save(secure_filename(f.filename))
+
+        #filename = os.path.splitext(f.filename)[0]
+        #timeline = otio.adapters.read_from_file(f.filename)
+        #download_filename = filename + '.otio'
        
-        otio.adapters.write_to_file(timeline, download_filename)
+        #otio.adapters.write_to_file(timeline, download_filename)
 
-        return send_file(download_filename, as_attachment=True)
+        #return send_file(download_filename, as_attachment=True)
 
 if __name__ == '__main__':
     app.run(host='127.0.0.1', port=5000)
