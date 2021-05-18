@@ -5,9 +5,32 @@ import requests
 import opentimelineio as otio
 
 app = Flask(__name__)
+app.secret_key = 'secret key' # for encrypting the session
+
+# It will allow below 16MB contents only, you can change it
+app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
+
+path = os.getcwd()
+
+# file upload
+UPLOAD_FOLDER = os.path.join(path, 'uploads')
+
+if not os.path.isdir(UPLOAD_FOLDER):
+    os.mkdir(UPLOAD_FOLDER)
+
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER 
+
+ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
+
+def allowed_file(filename):
+    return '.' in filename and filename.rsplit('.',1)[1].lower() in 
+ALLOWED_EXTENSIONS
 
 
 @app.route("/")
+def hello():
+    return 'Hello World!'
+
 def upload_form():
  
     return render_template("index.html")
@@ -25,3 +48,6 @@ def upload_file():
         otio.adapters.write_to_file(timeline, download_filename)
 
         return send_file(download_filename, as_attachment=True)
+
+if __name__ == '__main__':
+    app.run(host='127.0.0.1', port=5000)
