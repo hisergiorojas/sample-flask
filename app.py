@@ -57,12 +57,5 @@ def upload_file():
             flash('Allowed file types are edl')
             return redirect(request.url)
 
-       # f = request.files['file']
-       # f.save(secure_filename(f.filename))
-
-        #filename = os.path.splitext(f.filename)[0]
-       
-
-
 if __name__ == '__main__':
     app.run(host='127.0.0.1', port=5000)
