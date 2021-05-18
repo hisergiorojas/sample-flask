@@ -47,9 +47,11 @@ def upload_file():
             filename = secure_filename(file.filename)
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             timeline = otio.adapters.read_from_file(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            download_filename = filename + '.otio'
+            otio.adapters.write_to_file(timeline, download_filename)
             print('timeline', timeline)
             flash('File successfully uploaded')
-            return redirect('/')
+            return send_file(download_filename, as_attachment=True)
         else:
             flash('Allowed file types are txt, pdf, png, jpg, jpeg, gif')
             return redirect(request.url)
@@ -58,12 +60,8 @@ def upload_file():
        # f.save(secure_filename(f.filename))
 
         #filename = os.path.splitext(f.filename)[0]
-        #timeline = otio.adapters.read_from_file(f.filename)
-        #download_filename = filename + '.otio'
        
-        #otio.adapters.write_to_file(timeline, download_filename)
 
-        #return send_file(download_filename, as_attachment=True)
 
 if __name__ == '__main__':
     app.run(host='127.0.0.1', port=5000)
