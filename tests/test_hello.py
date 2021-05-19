@@ -47,5 +47,20 @@ def test_api_usd_name(app, client):
     )
     assert res.status_code == 200
 
-    # The file is one of supported file
-    # The model is converted to .usd
+def test_api_usd_file_supported(app, client):
+    avocado = os.path.join('tests/assets/Avocado.glb')
+
+    file = FileStorage(
+        stream=open(avocado, 'rb'),
+        filename='Avocado.glb',
+        content_type='glb'
+    )
+
+    res = client.post(
+        '/api/usd',
+        data = {
+            'file': file
+        },
+        content_type='multipart/form-data'
+    )
+    assert res.status_code == 200
