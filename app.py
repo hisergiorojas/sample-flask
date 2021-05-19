@@ -24,9 +24,14 @@ ALLOWED_EXTENSIONS = set(['edl'])
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
-@app.route('/usd')
-def upload():
+@app.route('/api/usd')
+def usd_form():
     return {'hello': 'world'}
+
+@app.route('/api/usd', methods = ['POST'])
+def upload_model():
+    if request.method == 'POST':
+        return {'hello': 'world'}
 
 @app.route("/")
 def upload_form(): 
