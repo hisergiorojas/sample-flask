@@ -1,3 +1,5 @@
+COPY requirements.txt /tmp
+WORKDIR /tmp
 FROM ubuntu:20.04
 
 
