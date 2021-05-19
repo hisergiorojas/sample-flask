@@ -31,6 +31,13 @@ def usd_form():
 @app.route('/api/usd', methods = ['POST'])
 def upload_model():
     if request.method == 'POST':
+        if 'file' not in request.files:
+            return False
+
+        file = request.files['file']
+
+        if file.filename == '':
+            return False
         return {'hello': 'world'}
 
 @app.route("/")
