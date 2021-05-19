@@ -1,4 +1,5 @@
 FROM ubuntu:20.04
+
 WORKDIR /usr/src/app
 COPY . .
 
@@ -9,4 +10,4 @@ RUN pip3 install -r requirements.txt
 
 EXPOSE 5001
 
-CMD [“python”, “./app.py”]
+CMD python app.py
