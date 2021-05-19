@@ -7,3 +7,5 @@ MarkupSafe==1.1.1
 Werkzeug==1.0.1
 opentimelineio==0.13.0
 requests==2.22.0
+PySide2
+PyOpenGL
