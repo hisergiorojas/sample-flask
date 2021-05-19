@@ -9,6 +9,9 @@ COPY . .
 RUN apt-get update && apt-get install cmake python3-pip libglu1-mesa-dev freeglut3-dev mesa-common-dev -y
 RUN pip3 install -r requirements.txt
 
+RUN git clone https://github.com/PixarAnimationStudios/USD.git
+RUN python USD/build_scripts/build_usd.py ./local/USD
+
 EXPOSE 5001
 
 CMD python app.py
