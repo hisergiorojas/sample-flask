@@ -1,6 +1,7 @@
+FROM ubuntu:20.04
 COPY requirements.txt /tmp
 WORKDIR /tmp
-FROM ubuntu:20.04
+
 
 
 # Install essential packages 
