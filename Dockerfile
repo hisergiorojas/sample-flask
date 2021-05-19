@@ -10,6 +10,8 @@ RUN apt-get update && apt-get install cmake python3-pip libglu1-mesa-dev freeglu
 RUN pip3 install -r requirements.txt
 
 RUN git clone https://github.com/PixarAnimationStudios/USD.git
+RUN git clone https://github.com/google/usd_from_gltf.git
+
 RUN python USD/build_scripts/build_usd.py ./local/USD
 
 EXPOSE 5001
