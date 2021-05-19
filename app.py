@@ -1,7 +1,6 @@
 from flask import Flask, flash, request, redirect, render_template, send_file
 from werkzeug.utils import secure_filename
 import os
-import requests
 import opentimelineio as otio
 
 app = Flask(__name__)
@@ -20,10 +19,33 @@ if not os.path.isdir(UPLOAD_FOLDER):
 
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER 
 
-ALLOWED_EXTENSIONS = set(['edl'])
+ALLOWED_EXTENSIONS = set(['edl', 'glb'])
 
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+@app.route('/api/usd')
+def usd_form():
+    return {'hello': 'world'}
+
+@app.route('/api/usd', methods = ['POST'])
+def upload_model():
+    if request.method == 'POST':
+        if 'file' not in request.files:
+            return False
+
+        file = request.files['file']
+
+        if file.filename == '':
+            return False
+
+        if file and allowed_file(file.filename):
+            filename = secure_filename(file.filename)
+            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            return True
+        else:
+            return False
+
 
 @app.route("/")
 def upload_form(): 
