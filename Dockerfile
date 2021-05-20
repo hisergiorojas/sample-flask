@@ -24,7 +24,8 @@ RUN git clone --branch "v${USD_RELEASE}" --depth 1 https://github.com/PixarAnima
 RUN python ./build_scripts/build_usd.py -v --no-usdview "${USD_INSTALL}" && \
   rm -rf "${USD_REPO}" "${USD_INSTALL}/build" "${USD_INSTALL}/src"
 
-
+# Share the volume that we have built to
+VOLUME ["./local/USD"]
 # Install essential packages
 #RUN apt-get update && apt-get install  libglu1-mesa-dev freeglut3-dev mesa-common-dev -y
 
