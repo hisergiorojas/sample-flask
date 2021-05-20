@@ -21,7 +21,7 @@ RUN pip3 install -r requirements.txt
 
 # Build + install USD
 RUN git clone --branch "v${USD_RELEASE}" --depth 1 https://github.com/PixarAnimationStudios/USD.git
-RUN python USD/build_scripts/build_usd.py -v --no-usdview "${USD_INSTALL}" 
+RUN python2 USD/build_scripts/build_usd.py -v --no-usdview "${USD_INSTALL}" 
 
 # Share the volume that we have built to
 VOLUME ["./local/USD"]
@@ -47,7 +47,7 @@ RUN git init && \
     git remote add origin https://github.com/google/usd_from_gltf.git && \
     git fetch --depth 1 origin "${UFG_RELEASE}" && \
     git checkout FETCH_HEAD && \
-    python "${UFG_SRC}/tools/ufginstall/ufginstall.py" -v "${UFG_INSTALL}" "${USD_DIR}" 
+    python2 "${UFG_SRC}/tools/ufginstall/ufginstall.py" -v "${UFG_INSTALL}" "${USD_DIR}" 
    
 
 # Start the service
