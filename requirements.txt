@@ -11,3 +11,4 @@ PySide2
 PyOpenGL
 nasm
 Pillow
+convert
