@@ -43,8 +43,8 @@ ENV LD_LIBRARY_PATH="${USD_DIR}/lib:${UFG_SRC}/lib"
 ENV PATH="${PATH}:${UFG_INSTALL}/bin"
 ENV PYTHONPATH="${PYTHONPATH}:${UFG_INSTALL}/python"
 
-RUN git clone https://github.com/google/usd_from_gltf.git \
-    python2 "${UFG_SRC}/tools/ufginstall/ufginstall.py" -v "${UFG_INSTALL}" "${USD_DIR}" 
+RUN git clone https://github.com/google/usd_from_gltf.git 
+RUN python2 "${UFG_SRC}/tools/ufginstall/ufginstall.py" -v "${UFG_INSTALL}" "${USD_DIR}" 
    
 
 # Start the service
