@@ -10,3 +10,5 @@ requests==2.22.0
 PySide2
 PyOpenGL
 Pillow
+image
+enum34
