@@ -12,3 +12,4 @@ PyOpenGL
 Pillow
 image
 enum34
+numpy
