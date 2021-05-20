@@ -21,7 +21,7 @@ RUN pip3 install -r requirements.txt
 
 # Build + install USD
 RUN git clone https://github.com/PixarAnimationStudios/USD.git
-RUN python2 USD/build_scripts/build_usd.py -v --no-usdview "${USD_INSTALL}" 
+RUN python USD/build_scripts/build_usd.py -v --no-usdview "${USD_INSTALL}" 
 
 # Share the volume that we have built to
 VOLUME ["./local/USD"]
