@@ -10,4 +10,5 @@ requests==2.22.0
 PySide2
 PyOpenGL
 Pillow
-convert
+image
+enum34
