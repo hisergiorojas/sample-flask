@@ -5,7 +5,6 @@ WORKDIR /usr/src/app
 COPY . .
 
 
-RUN mkdir -r local/
 # Configuration
 ARG USD_RELEASE="19.11"
 ARG USD_INSTALL="./local/USD"
