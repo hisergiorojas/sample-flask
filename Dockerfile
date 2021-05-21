@@ -49,7 +49,7 @@ RUN git clone https://github.com/google/usd_from_gltf.git
 RUN export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/src/app/local/USD:/usr/src/app/usd_from_gltf
 RUN export PATH=$PATH:/usr/src/app/local/USD:/usr/src/app/usd_from_gltf
 
-RUN python2 "${UFG_SRC}/tools/ufginstall/ufginstall.py" -v "${UFG_INSTALL}" "${USD_DIR}" 
+RUN python2 "${UFG_SRC}/tools/ufginstall/ufginstall.py" -v "${UFG_INSTALL}" "${USD_DIR}" --testdata
    
 
 # Start the service
