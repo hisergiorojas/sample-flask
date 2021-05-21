@@ -1,6 +1,4 @@
 FROM python:3
-
-
 WORKDIR /usr/src/app
 COPY . .
 
@@ -24,7 +22,7 @@ RUN pip3 install -r requirements.txt
 # Build + install USD
 RUN git clone --branch v${USD_VERSION} --single-branch --depth 1 https://github.com/PixarAnimationStudios/USD.git
 RUN cd USD && git checkout tags/v${USD_VERSION} && cd ../
-RUN python USD/build_scripts/build_usd.py -v --no-usdview "${USD_INSTALL}" 
+RUN python2 USD/build_scripts/build_usd.py -v --no-usdview "${USD_INSTALL}" 
 
 # Share the volume that we have built to
 VOLUME ["./local/USD"]
