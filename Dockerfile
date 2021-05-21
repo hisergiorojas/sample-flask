@@ -10,6 +10,8 @@ ARG USD_RELEASE="19.11"
 ARG USD_INSTALL="./local/USD"
 ENV PYTHONPATH="${PYTHONPATH}:${USD_INSTALL}/lib/python"
 ENV PATH="${PATH}:${USD_INSTALL}/bin"
+ENV USD_VERSION="19.07"
+
 
 # Dependencies
 RUN apt-get -qq update && apt-get install -y --no-install-recommends \
@@ -20,7 +22,8 @@ RUN apt-get -qq update && apt-get install -y --no-install-recommends \
 RUN pip3 install -r requirements.txt
 
 # Build + install USD
-RUN git clone https://github.com/PixarAnimationStudios/USD.git
+RUN git clone --branch v${USD_VERSION} --single-branch --depth 1 https://github.com/PixarAnimationStudios/USD.git
+RUN cd USD && git checkout tags/v${USD_VERSION} && cd ../
 RUN python USD/build_scripts/build_usd.py -v --no-usdview "${USD_INSTALL}" 
 
 # Share the volume that we have built to
