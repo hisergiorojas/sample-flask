@@ -13,7 +13,7 @@ ENV PATH="${PATH}:${USD_INSTALL}/bin"
 
 # Dependencies
 RUN apt-get -qq update && apt-get install -y --no-install-recommends \
-    git build-essential cmake nasm python3-pip \
+    git build-essential cmake nasm python3-pip python-dev python3-dev \
     libglew-dev libxrandr-dev libxcursor-dev libxinerama-dev libxi-dev zlib1g-dev && \
     rm -rf /var/lib/apt/lists/*
 
