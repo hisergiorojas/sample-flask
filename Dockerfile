@@ -5,6 +5,7 @@ WORKDIR /usr/src/app
 COPY . .
 
 
+RUN mkdir -r local/
 # Configuration
 ARG USD_RELEASE="19.11"
 ARG USD_INSTALL="./local/USD"
@@ -44,6 +45,10 @@ ENV PATH="${PATH}:${UFG_INSTALL}/bin"
 ENV PYTHONPATH="${PYTHONPATH}:${UFG_INSTALL}/python"
 
 RUN git clone https://github.com/google/usd_from_gltf.git 
+
+RUN export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/src/app/local/USD:/usr/src/app/usd_from_gltf
+RUN export PATH=$PATH:/usr/src/app/local/USD:/usr/src/app/usd_from_gltf
+
 RUN python2 "${UFG_SRC}/tools/ufginstall/ufginstall.py" -v "${UFG_INSTALL}" "${USD_DIR}" 
    
 
